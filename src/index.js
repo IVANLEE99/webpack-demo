@@ -1,12 +1,10 @@
 import _ from 'lodash';
-// import  './style.css';
-// import Icon from './icon.png';
-// import Data from './data.xml';
+import  './style.css';
 import printMe from './print.js';
   function component() {
     var element = document.createElement('div');
     var btn = document.createElement('button');
-    element.innerHTML = _.join(['Hello', 'webpa222222ck---2-23watch----'], ' ');
+    element.innerHTML = _.join(['Hello', 'webpa222222ck---2-223watch----'], ' ');
     element.classList.add('hello');
     btn.innerHTML = 'Click me and check the console!';
     btn.onclick = printMe;
@@ -26,5 +24,16 @@ import printMe from './print.js';
    
     return element;
   }
+let element = component();
+document.body.appendChild(element);
 
-document.body.appendChild(component());
+if (module.hot) {
+  module.hot.accept('./print.js',function () {  
+    console.log('acception the updated printMe module!');
+    document.body.removeChild(element);
+    element = component();
+    document.body.appendChild(element);
+    printMe();
+    
+  })
+}
